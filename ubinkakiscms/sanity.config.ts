@@ -5,9 +5,9 @@ import {schemaTypes} from './schemaTypes'
 
 export default defineConfig({
   name: 'default',
-  title: 'ubin-kakis-cms',
+  title: 'ubinkakis_cms',
 
-  projectId: 'k7ahlk3h',
+  projectId: 'n34jpwpp',
   dataset: 'production',
 
   plugins: [structureTool(), visionTool()],
