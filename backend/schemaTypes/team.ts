@@ -1,24 +1,13 @@
 import {defineField, defineType, regex} from 'sanity'
 
 export default defineType({
-  name: 'author',
-  title: 'Author',
+  name: 'team',
+  title: 'Team',
   type: 'document',
   fields: [
     defineField({
       name: 'team',
       title: 'Team',
-      type: 'reference',
-      to: {type: 'team'},
-    }),
-    defineField({
-      name: 'name',
-      title: 'Name',
-      type: 'string',
-    }),
-    defineField({
-      name: 'batch',
-      title: 'Batch',
       type: 'string',
       placeholder: 'Example: 2023/2024',
     }),

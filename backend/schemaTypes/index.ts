@@ -4,4 +4,5 @@ import post from './post'
 import author from './author'
 import {youtube} from './youtube'
 import event from './event'
-export const schemaTypes = [post, author, category, blockContent, youtube, event]
+import team from './team'
+export const schemaTypes = [post, author, category, blockContent, youtube, event, team]
