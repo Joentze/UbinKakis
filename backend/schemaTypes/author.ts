@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineField, defineType, regex} from 'sanity'
 
 export default defineType({
   name: 'author',
@@ -9,6 +9,12 @@ export default defineType({
       name: 'name',
       title: 'Name',
       type: 'string',
+    }),
+    defineField({
+      name: 'batch',
+      title: 'Batch',
+      type: 'string',
+      placeholder: 'Example: 2023/2024',
     }),
     defineField({
       name: 'slug',
