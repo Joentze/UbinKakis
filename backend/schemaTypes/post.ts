@@ -25,6 +25,12 @@ export default defineType({
       type: 'reference',
       to: {type: 'author'},
     }),
+    // defineField({
+    //   name: 'team',
+    //   title: 'Team',
+    //   type: 'document',
+    //   to: {type: 'team'},
+    // }),
     defineField({
       name: 'mainImage',
       title: 'Main image',
