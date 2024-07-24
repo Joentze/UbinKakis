@@ -6,7 +6,25 @@ import YouTubePlayer from "react-player/youtube";
 import urlBuilder from "@sanity/image-url";
 import { client } from "@/app/handlers/sanity/sanityBase";
 
+const convertDateTimeString = (dateTimeStr: string | undefined): string => {
+  if (dateTimeStr) {
+    const options: Intl.DateTimeFormatOptions = {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    };
+    return new Date(dateTimeStr).toLocaleDateString("en-US", options);
+  }
+  return "";
+};
+
 const components = {
+  block: {
+    h1: (node: any) => {
+      const { children } = node;
+      return <h1 className="text-3xl -mb-6">{children}</h1>;
+    },
+  },
   list: {
     // Ex. 1: customizing common list types
     bullet: (node: any) => {
@@ -53,13 +71,13 @@ const components = {
         .fit("max")
         .auto("format")
         .url();
-      console.log(src);
-      return <img src={src} />;
+
+      return <img className="m-auto" src={src} />;
     },
     youtube: (node: any) => {
       const { url } = node.value;
       return (
-        <div className="my-8">
+        <div className="my-8 ">
           <YouTubePlayer url={url} width={"100%"} />
         </div>
       );
@@ -79,6 +97,24 @@ const PostPage = () => {
   }, []);
   return (
     <div className="flex flex-col w-full sm:w-3/5">
+      <h1 className="text-3xl sm:text-5xl">{post?.title}</h1>
+      <p className="text-sm text-gray-500 ">
+        {convertDateTimeString(post?.publishedAt as string)}
+      </p>
+      <p className="text-sm text-gray-800 ">
+        <span className="font-bold">Written by:</span>{" "}
+        {post?.authorName.map((item: AuthorNameSlug, idx) => {
+          return (
+            <a
+              className="text-gray-600 hover:underline active:text-gray-500"
+              href="#"
+            >
+              {item.name} {idx !== post?.authorName.length - 1 ? "," : ""}
+            </a>
+          );
+        })}
+      </p>
+
       <div className="m-auto list-disc">
         <PortableText value={post?.body as any} components={components} />
       </div>

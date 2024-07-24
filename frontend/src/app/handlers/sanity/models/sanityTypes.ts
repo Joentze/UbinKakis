@@ -42,7 +42,12 @@ interface YouTubeBlock {
   url: string;
 }
 
+interface AuthorNameSlug {
+  name: string;
+  slug: string;
+}
 interface Post {
+  authorName: AuthorNameSlug[];
   _updatedAt: string;
   slug: Slug;
   mainImage: MainImage;

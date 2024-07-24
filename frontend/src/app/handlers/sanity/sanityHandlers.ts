@@ -26,7 +26,10 @@ export const getPostsPeek = async (): Promise<PostPeek[]> => {
 export const getPost = async (slug: string): Promise<Post> => {
   try {
     const post = await client.fetch(
-      `*[_type=="post" && slug.current == "${slug}"]`
+      `*[_type=="post" && slug.current == "${slug}"]{
+        ...,
+        "authorName":*[_type=="author" && _ref==author._ref] {name, "slug":slug.current}
+      }`
     );
     return post[0] as Post;
   } catch (e) {
