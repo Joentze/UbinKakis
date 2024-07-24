@@ -15,6 +15,9 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+p {
+  margin: 1em auto;
+}
 
 body {
   color: rgb(var(--foreground-rgb));
