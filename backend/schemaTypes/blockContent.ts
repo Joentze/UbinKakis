@@ -66,5 +66,8 @@ export default defineType({
     defineArrayMember({
       type: 'youtube',
     }),
+    defineArrayMember({
+      type: 'instagram',
+    }),
   ],
 })

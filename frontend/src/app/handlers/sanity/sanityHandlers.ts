@@ -1,5 +1,5 @@
 import { client } from "./sanityBase";
-import { Post, PostPeek } from "../sanity/models/sanityTypes";
+import { Post, PostPeek } from "./models/sanityTypes";
 
 export const getPosts = async (): Promise<Post[]> => {
   try {
@@ -28,7 +28,9 @@ export const getPost = async (slug: string): Promise<Post> => {
     const post = await client.fetch(
       `*[_type=="post" && slug.current == "${slug}"]{
         ...,
-        "authorName":*[_type=="author" && _ref==author._ref] {name, "slug":slug.current}
+        "image":mainImage.asset->url,
+        "authorName":*[_type=="author" && _ref==author._ref] {name, "slug":slug.current},
+        categories[]->{title}
       }`
     );
     return post[0] as Post;

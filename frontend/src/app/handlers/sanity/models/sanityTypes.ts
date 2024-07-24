@@ -41,12 +41,18 @@ interface YouTubeBlock {
   _key: string;
   url: string;
 }
-
+interface CategoryTitle {
+  title: string;
+}
 interface AuthorNameSlug {
   name: string;
   slug: string;
 }
+interface Image {
+  url: string;
+}
 interface Post {
+  image: Image;
   authorName: AuthorNameSlug[];
   _updatedAt: string;
   slug: Slug;
@@ -54,7 +60,7 @@ interface Post {
   publishedAt: string;
   _type: "post";
   _id: string;
-  categories: Reference[];
+  categories: CategoryTitle[];
   body: (Block | YouTubeBlock)[];
   title: string;
   author: Reference;
