@@ -3,6 +3,8 @@ import { getPost } from "@/app/handlers/sanity/sanityHandlers";
 import { PortableText } from "@portabletext/react";
 import { useEffect, useState } from "react";
 import YouTubePlayer from "react-player/youtube";
+import urlBuilder from "@sanity/image-url";
+import { client } from "@/app/handlers/sanity/sanityBase";
 
 const components = {
   list: {
@@ -43,7 +45,17 @@ const components = {
     },
   },
   types: {
-
+    image: (node: any) => {
+      const { value, isInline } = node;
+      const src = urlBuilder(client)
+        .image(value)
+        .width(isInline ? 100 : 800)
+        .fit("max")
+        .auto("format")
+        .url();
+      console.log(src);
+      return <img src={src} />;
+    },
     youtube: (node: any) => {
       const { url } = node.value;
       return (
