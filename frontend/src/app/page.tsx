@@ -3,12 +3,14 @@ import PostsList from "./components/posts/PostsList";
 import PostPage from "./components/posts/PostPage";
 import { Theme } from "@radix-ui/themes";
 import Footer from "./components/footer/Footer";
+import Script from "next/script";
 
 export default function Home() {
   return (
     <Theme>
+      
       <main className="flex min-h-screen flex-col items-center justify-between">
-        <PostPage />
+        {/* <PostPage /> */}
         <Footer />
         {/* <PostsList /> */}
         {/*       
