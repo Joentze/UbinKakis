@@ -8,6 +8,7 @@ import { client } from "@/app/handlers/sanity/sanityBase";
 import InstagramEmbed from "react-instagram-embed";
 import { Badge, IconButton } from "@radix-ui/themes";
 import Script from "next/script";
+import PortableTextRenderer from "../text/PortableTextRenderer";
 
 const convertDateTimeString = (dateTimeStr: string | undefined): string => {
   if (dateTimeStr) {
@@ -185,7 +186,7 @@ const PostPage: React.FC<IPostPage> = ({ slug }) => {
         </p>
 
         <div className="m-auto list-disc">
-          <PortableText value={post?.body as any} components={components} />
+          <PortableTextRenderer value={post?.body as any} />
         </div>
       </div>
     </>
