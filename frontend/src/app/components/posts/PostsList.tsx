@@ -1,6 +1,9 @@
 "use client";
 
-import { getPosts, getPostsPeek } from "@/app/handlers/sanity/sanityHandlers";
+import {
+  getPosts,
+  getPostsPeek,
+} from "@/app/components/handlers/sanity/sanityHandlers";
 import React, { useEffect, useState } from "react";
 
 const PostsList = () => {

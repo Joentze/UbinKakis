@@ -38,3 +38,9 @@ export const getPost = async (slug: string): Promise<Post> => {
     throw new Error((e as Error).message);
   }
 };
+
+export const getTeamsPeek = async () => {};
+export const getTeam = async () => {};
+export const getEventsPeek = async () => {};
+export const getEvent = async () => {};
+export const getAuthor = async () => {};
