@@ -79,3 +79,10 @@ interface PostPeek {
   slug: string;
   author: AuthorName[];
 }
+
+interface Team {
+  team: string
+  image: string
+  // TODO: provide proper type for the bio
+  bio: any[]
+}
