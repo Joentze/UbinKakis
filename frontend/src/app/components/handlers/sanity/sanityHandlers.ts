@@ -1,5 +1,5 @@
 import { client } from "./sanityBase";
-import { Post, PostPeek } from "./models/sanityTypes";
+import { Post, PostPeek, Team } from "./models/sanityTypes";
 
 export const getPosts = async (): Promise<Post[]> => {
   try {
@@ -39,8 +39,23 @@ export const getPost = async (slug: string): Promise<Post> => {
   }
 };
 
-export const getTeamsPeek = async () => {};
-export const getTeam = async () => {};
-export const getEventsPeek = async () => {};
-export const getEvent = async () => {};
-export const getAuthor = async () => {};
+export const getTeamsPeek = async () => { };
+export const getTeam = async (slug: string): Promise<Team> => {
+  try {
+    const team = await client.fetch(
+      `
+      *[_type=="team" && slug.current == "${slug}"]{
+        team,
+        bio,
+        "image":image.asset->url
+      }
+      `
+    )
+    return team[0] as Team;
+  } catch (e) {
+    throw new Error((e as Error).message)
+  }
+};
+export const getEventsPeek = async () => { };
+export const getEvent = async () => { };
+export const getAuthor = async () => { };
