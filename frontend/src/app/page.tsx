@@ -1,17 +1,14 @@
 "use client";
 import Image from "next/image";
 import PostsList from "./components/posts/PostsList";
-import PostPage from "./components/posts/PostPage";
-import { Heading, Theme } from "@radix-ui/themes";
+import { Button, Heading, Theme } from "@radix-ui/themes";
 import * as Avatar from "@radix-ui/react-avatar";
 import Footer from "./components/footer/Footer";
-import Script from "next/script";
-import { gsap } from "gsap/gsap-core";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 export default function Home() {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
-  useEffect(() => {}, []);
+
   return (
     <Theme>
       <main className="flex min-h-screen flex-col items-center justify-between">
@@ -32,20 +29,36 @@ export default function Home() {
             }}
           ></div>
         </div>
-        <Avatar.Root className="-mt-32 mb-6 z-50">
+        <Avatar.Root className="-mt-48 mb-6 z-50 animate-fade-in">
           <Avatar.AvatarImage
             className="m-auto w-64"
-            src="
-https://www.ubinkakis.com/_next/image?url=https%3A%2F%2Fstrapi-ubin-cms.s3.ap-southeast-1.amazonaws.com%2FUbin_Kakis_Logo_c1157050f0.png&w=2048&q=75"
+            src="https://www.ubinkakis.com/_next/image?url=https%3A%2F%2Fstrapi-ubin-cms.s3.ap-southeast-1.amazonaws.com%2FUbin_Kakis_Logo_c1157050f0.png&w=2048&q=75"
           ></Avatar.AvatarImage>
         </Avatar.Root>
         <h1
           ref={titleRef}
-          className="text-5xl sm:text-7xl md:text-8xl text-gray-600 select-none duration-75"
+          className="text-5xl sm:text-6xl md:text-7xl text-gray-600 select-none animate-fade-in"
         >
           Ubin Kakis
         </h1>
-
+        <div className="flex flex-col w-full sm:w-1/3 bg-transparent p-10 sm:p-0 -mt-6 sm:mt-4 animate-fade-in">
+          <p className="text-center text-gray-400 ">
+            Our goal for this project is to form meaningful connections with the communities on Pulau Ubin and share their cultures and kampung life with more Singaporeans.
+          </p>
+          <div className="flex flex-row m-auto gap-4 mt-6">
+            <Button color="orange" size="3" variant="soft">About Us</Button>
+            <Button color="orange" size="3" variant="classic">Journal</Button>
+          </div>
+        </div>
+        <hr className="w-full my-12"></hr>
+        <h1
+          ref={titleRef}
+          className="text-3xl sm:text-4xl md:text-5xl text-gray-600 select-none animate-fade-in"
+        >
+          Our Journal
+        </h1>
+        <h1 className="text-3xs text-gray-400 my-2 mb-12 animate-fade-in">Stories, Reflections & More</h1>
+        <PostsList />
         <Footer />
       </main>
     </Theme>

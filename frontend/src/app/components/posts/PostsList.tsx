@@ -5,6 +5,8 @@ import {
   getPostsPeek,
 } from "@/app/components/handlers/sanity/sanityHandlers";
 import React, { useEffect, useState } from "react";
+import JournalCard from "../card/JournalCard";
+import { Skeleton } from "@radix-ui/themes";
 
 const PostsList = () => {
   // lists all posts on front page
@@ -12,11 +14,23 @@ const PostsList = () => {
   useEffect(() => {
     const getAllPost = async () => {
       const peekResponse: PostPeek[] = await getPostsPeek();
+      console.log(peekResponse)
       setPostPeeks(peekResponse);
     };
     getAllPost();
   }, []);
-  return <></>;
+  return (<div className="max-w-3/5 flex flex-wrap gap-4">{postPeeks.map(item =>
+    <Skeleton loading={item === undefined}>
+      <JournalCard
+        slug={item.slug}
+        authorName={item.authorName[0]["name"]}
+        title={item.title}
+        date={item.publishedAt}
+        image={item.image}
+      />
+    </Skeleton>
+  )}
+  </div>);
 };
 
 export default PostsList;

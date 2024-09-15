@@ -3,7 +3,7 @@ import * as Form from "@radix-ui/react-form";
 import { Button } from "@radix-ui/themes";
 
 const FormDemo = () => (
-  <Form.Root className="FormRoot w-full my-10">
+  <Form.Root className="FormRoot w-full pb-32">
     <Form.Field className="FormField w-full" name="email">
       <div
         style={{
@@ -16,9 +16,7 @@ const FormDemo = () => (
         <Form.Message className="FormMessage" match="valueMissing">
           Please enter your email
         </Form.Message>
-        <Form.Message className="FormMessage" match="typeMismatch">
-          Please provide a valid email
-        </Form.Message>
+
       </div>
       <Form.Control asChild>
         <input className="Input" type="email" required />
@@ -33,9 +31,7 @@ const FormDemo = () => (
         }}
       >
         <Form.Label className="FormLabel">Question</Form.Label>
-        <Form.Message className="FormMessage" match="valueMissing">
-          Please enter a question
-        </Form.Message>
+
       </div>
       <Form.Control asChild>
         <textarea className="Textarea" required />
@@ -45,7 +41,7 @@ const FormDemo = () => (
       <Button
         size="3"
         color="orange"
-        variant="surface"
+        variant="classic"
         className="w-full mt-10"
       >
         Send

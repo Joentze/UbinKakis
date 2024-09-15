@@ -1,5 +1,5 @@
 import { client } from "./sanityBase";
-import { Post, PostPeek, Team } from "./models/sanityTypes";
+import { Post, PostPeek, Team, Author } from "./models/sanityTypes";
 
 export const getPosts = async (): Promise<Post[]> => {
   try {
@@ -58,4 +58,23 @@ export const getTeam = async (slug: string): Promise<Team> => {
 };
 export const getEventsPeek = async () => { };
 export const getEvent = async () => { };
-export const getAuthor = async () => { };
+export const getAuthor = async (slug: string): Promise<Author> => {
+  try {
+    const team = await client.fetch(
+      `
+      *[_type=="author" && slug.current == "${slug}"]{
+      ...team->{
+        "teamSlug":slug.current,
+        "team":team
+      },
+        name,
+        bio,
+        "image":image.asset->url
+      }
+      `
+    )
+    return team[0] as Team;
+  } catch (e) {
+    throw new Error((e as Error).message)
+  }
+};

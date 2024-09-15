@@ -57,10 +57,10 @@ const PostPage: React.FC<IPostPage> = ({ slug }) => {
         ></div>
       </div>
       <div className="flex flex-col w-full sm:w-3/5 bg-transparent p-10 sm:p-0">
-        <BackButton/>
+        <BackButton />
         <div className="flex flex-row mt-8">
           <Skeleton loading={post === undefined}>
-            <h1 className="text-3xl md:text-5xl grow h-10">{post?.title}</h1>
+            <h1 className="text-2xl md:text-5xl grow h-10">{post?.title}</h1>
           </Skeleton>
           <>
             {post?.categories.map((item) => {

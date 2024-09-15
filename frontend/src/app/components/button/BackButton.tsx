@@ -1,8 +1,11 @@
-import { IconButton } from "@radix-ui/themes"
+"use client"
 
+import { IconButton } from "@radix-ui/themes"
+import { useRouter } from "next/navigation"
 const BackButton = () => {
+    const router = useRouter()
     return (
-        <IconButton variant="soft" color="orange" className="z-100">
+        <IconButton variant="soft" color="orange" className="z-100" onClick={() => router.back()}>
             <svg
                 width="15"
                 height="15"

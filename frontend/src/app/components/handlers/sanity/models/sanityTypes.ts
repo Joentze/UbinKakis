@@ -77,12 +77,20 @@ interface PostPeek {
   title: string;
   image: string;
   slug: string;
-  author: AuthorName[];
+  authorName: AuthorName[];
 }
 
 interface Team {
   team: string
   image: string
   // TODO: provide proper type for the bio
+  bio: any[]
+}
+
+interface Author {
+  name: string
+  team: string
+  teamSlug: string
+  image: string | undefined
   bio: any[]
 }
