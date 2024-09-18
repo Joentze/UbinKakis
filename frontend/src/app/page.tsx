@@ -7,8 +7,10 @@ import Footer from "./components/footer/Footer";
 import { useRef } from "react";
 
 export default function Home() {
-  const titleRef = useRef<HTMLHeadingElement | null>(null);
-
+  const journalRef = useRef<HTMLHeadingElement | null>(null);
+  const scrollJournalIntoView = () => {
+    journalRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
   return (
     <Theme>
       <main className="flex min-h-screen flex-col items-center justify-between">
@@ -36,7 +38,6 @@ export default function Home() {
           ></Avatar.AvatarImage>
         </Avatar.Root>
         <h1
-          ref={titleRef}
           className="text-5xl sm:text-6xl md:text-7xl text-gray-600 select-none animate-fade-in"
         >
           Ubin Kakis
@@ -47,15 +48,15 @@ export default function Home() {
           </p>
           <div className="flex flex-row m-auto gap-4 mt-6">
             <a href="/t"><Button color="orange" size="3" variant="soft">About Us</Button></a>
-            <Button color="orange" size="3" variant="classic">Journal</Button>
+            <Button color="orange" size="3" variant="classic" onClick={scrollJournalIntoView}>Journal</Button>
           </div>
         </div>
         <hr className="w-full my-12"></hr>
         <h1
-          ref={titleRef}
+          ref={journalRef}
           className="text-3xl sm:text-4xl md:text-5xl text-gray-600 select-none animate-fade-in"
         >
-          Our Journal
+          Our Journal 📙
         </h1>
         <h1 className="text-3xs text-gray-400 my-2 mb-12 animate-fade-in">Stories, Reflections & More</h1>
         <PostsList />

@@ -87,7 +87,7 @@ const PostPage: React.FC<IPostPage> = ({ slug }) => {
                 <span className="font-bold">Written by:</span>{" "}
                 <a
                   className="text-gray-600 hover:underline active:text-gray-500"
-                  href="#"
+                  href={`/a/${item.slug}`}
                 >
                   {item.name} {idx !== post?.authorName.length - 1 ? "," : ""}
                 </a>

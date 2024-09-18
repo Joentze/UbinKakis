@@ -14,7 +14,6 @@ const PostsList = () => {
   useEffect(() => {
     const getAllPost = async () => {
       const peekResponse: PostPeek[] = await getPostsPeek();
-      console.log(peekResponse)
       setPostPeeks(peekResponse);
     };
     getAllPost();

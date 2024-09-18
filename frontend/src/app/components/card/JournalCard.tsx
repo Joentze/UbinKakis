@@ -16,7 +16,7 @@ const isoToStringDateFormat = (isoDateString: string): string => {
     const dayMonthYear = `${day}/${month}/${year}`;
     return dayMonthYear
 }
-const JournalCard: React.FC<IJournalCard> = ({ title, image, authorName, slug }) => {
+const JournalCard: React.FC<IJournalCard> = ({ title, image, authorName, date, slug }) => {
     return (
         <Box maxWidth={"350px"} className="m-auto animate-fade-in">
             <Card size="4" className="mx-1" >
@@ -41,7 +41,7 @@ const JournalCard: React.FC<IJournalCard> = ({ title, image, authorName, slug })
                     </h1>
                 </a>
                 <p className="text-sm text-gray-400">
-                    By {authorName}
+                    By {authorName} - {isoToStringDateFormat(date)}
                 </p>
             </Card >
         </Box>
