@@ -39,7 +39,20 @@ export const getPost = async (slug: string): Promise<Post> => {
   }
 };
 
-export const getTeamsPeek = async () => { };
+export const getTeamsPeek = async () => {
+  try {
+    const teams = await client.fetch(`
+    *[_type=="team"]{
+      team,
+      "teamSlug":slug.current,
+      "image":image.asset->url
+    }
+    `);
+    return teams as Team[];
+  } catch (e) {
+    throw new Error((e as Error).message)
+  }
+};
 export const getTeam = async (slug: string): Promise<Team> => {
   try {
     const team = await client.fetch(

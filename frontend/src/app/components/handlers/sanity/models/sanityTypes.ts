@@ -94,3 +94,8 @@ interface Author {
   image: string | undefined
   bio: any[]
 }
+interface TeamPeek {
+  team: string
+  teamSlug: string
+  image: string
+}

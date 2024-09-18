@@ -46,7 +46,7 @@ export default function Home() {
             Our goal for this project is to form meaningful connections with the communities on Pulau Ubin and share their cultures and kampung life with more Singaporeans.
           </p>
           <div className="flex flex-row m-auto gap-4 mt-6">
-            <Button color="orange" size="3" variant="soft">About Us</Button>
+            <a href="/t"><Button color="orange" size="3" variant="soft">About Us</Button></a>
             <Button color="orange" size="3" variant="classic">Journal</Button>
           </div>
         </div>
