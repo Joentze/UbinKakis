@@ -71,7 +71,7 @@ export const getTeam = async (slug: string): Promise<Team> => {
 };
 
 
-export const getEventsPeek = async (): Promise<Event[]> => {
+export const getEventsPeek = async (): Promise<EventPeek[]> => {
   try {
     const events = await client.fetch(
       `*[_type=="event"]{
@@ -84,18 +84,41 @@ export const getEventsPeek = async (): Promise<Event[]> => {
       `
     )
     let formattedEvents: Event[] = events.map((event: Event) => ({
-        ...event,
-        eventStartsAt: new Date(event["eventStartsAt"]),
-        eventEndsAt: new Date(event["eventEndsAt"])
+      ...event,
+      eventStartsAt: new Date(event["eventStartsAt"]),
+      eventEndsAt: new Date(event["eventEndsAt"])
     })).sort((a: Event, b: Event) => a.eventStartsAt.getTime() - b.eventStartsAt.getTime());
-    
+
     return formattedEvents as Event[];
 
   } catch (e) {
     throw new Error("There was an error with getting events")
   }
 };
-export const getEvent = async () => { };
+export const getEvent = async (slug: string): Promise<Event> => {
+  try {
+    const event = await client.fetch(
+      `
+      *[_type=="event" && slug.current == "${slug}"]{
+        eventName,
+        eventStartsAt,
+        "eventSlug":slug.current,
+        eventEndsAt,
+        bio,
+        "image":image.asset->url
+      }
+      `
+    );
+    console.log(event)
+    return {
+      ...event[0],
+      eventStartsAt: new Date(event[0]["eventStartsAt"]),
+      eventEndsAt: new Date(event[0]["eventEndsAt"]),
+    } as Event;
+  } catch (e) {
+    throw new Error((e as Error).message);
+  }
+};
 export const getAuthor = async (slug: string): Promise<Author> => {
   try {
     const author = await client.fetch(

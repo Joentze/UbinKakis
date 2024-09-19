@@ -107,3 +107,12 @@ interface EventPeek {
   eventEndsAt: Date
   eventSlug: string
 }
+
+interface Event {
+  name: string
+  image: string
+  eventStartAt: Date
+  eventEndsAt: Date
+  eventSlug: string
+  bio: any[]
+}
