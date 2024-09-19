@@ -65,7 +65,7 @@ export default function Home() {
         <hr className="w-full my-12"></hr>
         <h1
           ref={journalRef}
-          className="text-3xl sm:text-4xl md:text-5xl text-gray-600 select-none animate-fade-in"
+          className="text-3xl sm:text-4xl md:text-5xl text-gray-600 select-none animate-fade-in mb-12"
         >
           Upcoming Events 📅
         </h1>

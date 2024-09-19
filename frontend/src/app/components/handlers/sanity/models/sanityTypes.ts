@@ -105,4 +105,5 @@ interface EventPeek {
   image: string
   eventStartAt: Date
   eventEndsAt: Date
+  eventSlug: string
 }

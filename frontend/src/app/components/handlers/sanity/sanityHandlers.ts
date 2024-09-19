@@ -77,20 +77,19 @@ export const getEventsPeek = async (): Promise<Event[]> => {
       `*[_type=="event"]{
         eventName,
         eventStartsAt,
+        "eventSlug":slug.current,
         eventEndsAt,
         "image":image.asset->url
       }
       `
     )
-    let formattedEvents: Event[] = []
-    for (let event of events) {
-      formattedEvents.push({
+    let formattedEvents: Event[] = events.map((event: Event) => ({
         ...event,
         eventStartsAt: new Date(event["eventStartsAt"]),
         eventEndsAt: new Date(event["eventEndsAt"])
-      })
-    }
-    return formattedEvents as Event[]
+    })).sort((a: Event, b: Event) => a.eventStartsAt.getTime() - b.eventStartsAt.getTime());
+    
+    return formattedEvents as Event[];
 
   } catch (e) {
     throw new Error("There was an error with getting events")
