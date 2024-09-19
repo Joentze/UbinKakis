@@ -99,3 +99,10 @@ interface TeamPeek {
   teamSlug: string
   image: string
 }
+
+interface EventPeek {
+  name: string
+  image: string
+  eventStartAt: Date
+  eventEndsAt: Date
+}

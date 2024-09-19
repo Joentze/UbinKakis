@@ -5,6 +5,8 @@ import { Button, Heading, Theme } from "@radix-ui/themes";
 import * as Avatar from "@radix-ui/react-avatar";
 import Footer from "./components/footer/Footer";
 import { useRef } from "react";
+import EventsList from "./components/events/EventsList";
+
 
 export default function Home() {
   const journalRef = useRef<HTMLHeadingElement | null>(null);
@@ -60,6 +62,14 @@ export default function Home() {
         </h1>
         <h1 className="text-3xs text-gray-400 my-2 mb-12 animate-fade-in">Stories, Reflections & More</h1>
         <PostsList />
+        <hr className="w-full my-12"></hr>
+        <h1
+          ref={journalRef}
+          className="text-3xl sm:text-4xl md:text-5xl text-gray-600 select-none animate-fade-in"
+        >
+          Upcoming Events 📅
+        </h1>
+        <EventsList />
         <Footer />
       </main>
     </Theme>

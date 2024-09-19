@@ -1,5 +1,5 @@
 import { client } from "./sanityBase";
-import { Post, PostPeek, Team, Author } from "./models/sanityTypes";
+import { Post, PostPeek, Team, Author, Event } from "./models/sanityTypes";
 
 export const getPosts = async (): Promise<Post[]> => {
   try {
@@ -69,11 +69,37 @@ export const getTeam = async (slug: string): Promise<Team> => {
     throw new Error((e as Error).message)
   }
 };
-export const getEventsPeek = async () => { };
+
+
+export const getEventsPeek = async (): Promise<Event[]> => {
+  try {
+    const events = await client.fetch(
+      `*[_type=="event"]{
+        eventName,
+        eventStartsAt,
+        eventEndsAt,
+        "image":image.asset->url
+      }
+      `
+    )
+    let formattedEvents: Event[] = []
+    for (let event of events) {
+      formattedEvents.push({
+        ...event,
+        eventStartsAt: new Date(event["eventStartsAt"]),
+        eventEndsAt: new Date(event["eventEndsAt"])
+      })
+    }
+    return formattedEvents as Event[]
+
+  } catch (e) {
+    throw new Error("There was an error with getting events")
+  }
+};
 export const getEvent = async () => { };
 export const getAuthor = async (slug: string): Promise<Author> => {
   try {
-    const team = await client.fetch(
+    const author = await client.fetch(
       `
       *[_type=="author" && slug.current == "${slug}"]{
       ...team->{
@@ -86,7 +112,7 @@ export const getAuthor = async (slug: string): Promise<Author> => {
       }
       `
     )
-    return team[0] as Team;
+    return author[0] as Author;
   } catch (e) {
     throw new Error((e as Error).message)
   }

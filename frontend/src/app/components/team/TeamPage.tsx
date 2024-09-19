@@ -28,7 +28,7 @@ const TeamPage: React.FC<ITeamPage> = ({ slug }) => {
         <Skeleton loading={team === undefined}>
             <h1 className="text-6xl font-bold text-gray-600 mb-8 z-50 select-none">{team?.team}</h1></Skeleton>
         <PortableTextRenderer value={team?.bio}></PortableTextRenderer>
-        <BackButton />
+        <div className="mt-4"><BackButton /></div>
     </>)
 }
 
