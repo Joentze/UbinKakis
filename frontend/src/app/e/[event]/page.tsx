@@ -4,6 +4,7 @@ import Footer from "../../components/footer/Footer";
 import { useParams } from "next/navigation";
 import EventPage from "@/app/components/events/EventPage";
 
+
 const Page = () => {
     const params = useParams<{ event: string }>();
     return (
