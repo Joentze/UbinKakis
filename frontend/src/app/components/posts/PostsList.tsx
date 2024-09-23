@@ -7,6 +7,7 @@ import {
 import React, { useEffect, useState } from "react";
 import JournalCard from "../card/JournalCard";
 import { Skeleton } from "@radix-ui/themes";
+import { PostPeek } from "../handlers/sanity/models/sanityTypes";
 
 const PostsList = () => {
   // lists all posts on front page

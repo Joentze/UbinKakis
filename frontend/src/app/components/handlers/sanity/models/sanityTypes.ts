@@ -1,32 +1,32 @@
-interface Slug {
+export interface Slug {
   current: string;
   _type: "slug";
 }
 
-interface ImageAsset {
+export interface ImageAsset {
   _ref: string;
   _type: "reference";
 }
 
-interface MainImage {
+export interface MainImage {
   _type: "image";
   asset: ImageAsset;
 }
 
-interface Reference {
+export interface Reference {
   _ref: string;
   _type: "reference";
   _key?: string;
 }
 
-interface Span {
+export interface Span {
   _key: string;
   _type: "span";
   text: string;
   marks: string[];
 }
 
-interface Block {
+export interface Block {
   markDefs: any[];
   children: Span[];
   _type: "block";
@@ -36,22 +36,26 @@ interface Block {
   level?: number;
 }
 
-interface YouTubeBlock {
+export interface YouTubeBlock {
   _type: "youtube";
   _key: string;
   url: string;
 }
-interface CategoryTitle {
+
+export interface CategoryTitle {
   title: string;
 }
-interface AuthorNameSlug {
+
+export interface AuthorNameSlug {
   name: string;
   slug: string;
 }
-interface Image {
+
+export interface Image {
   url: string;
 }
-interface Post {
+
+export interface Post {
   image: Image;
   authorName: AuthorNameSlug[];
   _updatedAt: string;
@@ -68,11 +72,11 @@ interface Post {
   _rev: string;
 }
 
-interface AuthorName {
+export interface AuthorName {
   name: string;
 }
 
-interface PostPeek {
+export interface PostPeek {
   publishedAt: string;
   title: string;
   image: string;
@@ -80,39 +84,40 @@ interface PostPeek {
   authorName: AuthorName[];
 }
 
-interface Team {
-  team: string
-  image: string
+export interface Team {
+  team: string;
+  image: string;
   // TODO: provide proper type for the bio
-  bio: any[]
+  bio: any[];
 }
 
-interface Author {
-  name: string
-  team: string
-  teamSlug: string
-  image: string | undefined
-  bio: any[]
-}
-interface TeamPeek {
-  team: string
-  teamSlug: string
-  image: string
+export interface Author {
+  name: string;
+  team: string;
+  teamSlug: string;
+  image: string | undefined;
+  bio: any[];
 }
 
-interface EventPeek {
-  name: string
-  image: string
-  eventStartAt: Date
-  eventEndsAt: Date
-  eventSlug: string
+export interface TeamPeek {
+  team: string;
+  teamSlug: string;
+  image: string;
 }
 
-interface Event {
-  name: string
-  image: string
-  eventStartAt: Date
-  eventEndsAt: Date
-  eventSlug: string
-  bio: any[]
+export interface EventPeek {
+  eventName: string;
+  image: string;
+  eventStartsAt: Date;
+  eventEndsAt: Date;
+  eventSlug: string;
+}
+
+export interface Event {
+  eventName: string;
+  image: string;
+  eventStartsAt: Date;
+  eventEndsAt: Date;
+  eventSlug: string;
+  bio: any[];
 }

@@ -6,6 +6,7 @@ import {
 import React, { useEffect, useState } from "react";
 import TeamCard from "../card/TeamCard";
 import { Skeleton } from "@radix-ui/themes";
+import { TeamPeek } from "../handlers/sanity/models/sanityTypes";
 
 const TeamsList = () => {
     // lists all posts on front page

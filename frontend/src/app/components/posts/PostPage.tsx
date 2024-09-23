@@ -5,6 +5,7 @@ import { Badge, IconButton, Skeleton } from "@radix-ui/themes";
 import Script from "next/script";
 import PortableTextRenderer from "../text/PortableTextRenderer";
 import BackButton from "../button/BackButton";
+import { AuthorNameSlug, Post } from "../handlers/sanity/models/sanityTypes";
 
 const convertDateTimeString = (dateTimeStr: string | undefined): string => {
   if (dateTimeStr) {

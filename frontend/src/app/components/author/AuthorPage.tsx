@@ -5,7 +5,7 @@ import { getAuthor } from "@/app/components/handlers/sanity/sanityHandlers"
 import { useEffect, useState } from "react"
 import * as Avatar from "@radix-ui/react-avatar"
 import BackButton from "../button/BackButton"
-
+import { Author } from "@/app/components/handlers/sanity/models/sanityTypes"
 
 interface IAuthorPage {
     slug: string

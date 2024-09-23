@@ -1,5 +1,5 @@
 import { client } from "./sanityBase";
-import { Post, PostPeek, Team, Author, Event } from "./models/sanityTypes";
+import { Post, PostPeek, Team, Author, Event, EventPeek, TeamPeek } from "./models/sanityTypes";
 
 export const getPosts = async (): Promise<Post[]> => {
   try {
@@ -39,7 +39,7 @@ export const getPost = async (slug: string): Promise<Post> => {
   }
 };
 
-export const getTeamsPeek = async () => {
+export const getTeamsPeek = async (): Promise<TeamPeek[]> => {
   try {
     const teams = await client.fetch(`
     *[_type=="team"]{
@@ -48,7 +48,7 @@ export const getTeamsPeek = async () => {
       "image":image.asset->url
     }
     `);
-    return teams as Team[];
+    return teams as TeamPeek[];
   } catch (e) {
     throw new Error((e as Error).message)
   }
@@ -83,13 +83,13 @@ export const getEventsPeek = async (): Promise<EventPeek[]> => {
       }
       `
     )
-    let formattedEvents: Event[] = events.map((event: Event) => ({
+    let formattedEvents: EventPeek[] = events.map((event: Event) => ({
       ...event,
       eventStartsAt: new Date(event["eventStartsAt"]),
       eventEndsAt: new Date(event["eventEndsAt"])
     })).sort((a: Event, b: Event) => a.eventStartsAt.getTime() - b.eventStartsAt.getTime());
 
-    return formattedEvents as Event[];
+    return formattedEvents as EventPeek[];
 
   } catch (e) {
     throw new Error("There was an error with getting events")
@@ -109,7 +109,6 @@ export const getEvent = async (slug: string): Promise<Event> => {
       }
       `
     );
-    console.log(event)
     return {
       ...event[0],
       eventStartsAt: new Date(event[0]["eventStartsAt"]),

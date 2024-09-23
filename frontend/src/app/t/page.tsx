@@ -3,13 +3,13 @@
 import { Theme } from "@radix-ui/themes"
 import Footer from "../components/footer/Footer"
 import { getTeamsPeek } from "../components/handlers/sanity/sanityHandlers"
-import { TeamPeak } from "../components/handlers/sanity/models/sanityTypes"
+import { TeamPeek } from "../components/handlers/sanity/models/sanityTypes"
 import { useState } from "react"
 import TeamsList from "../components/team/TeamsList"
 import BackButton from "../components/button/BackButton"
 
 const TeamsPage = () => {
-    const [teams, setTeams] = useState<TeamPeak[]>()
+    const [teams, setTeams] = useState<TeamPeek[]>()
     return (<>
         <Theme>
             <main className="flex min-h-screen flex-col items-center justify-between">
