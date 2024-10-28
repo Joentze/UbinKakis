@@ -15,7 +15,9 @@ export default function Home() {
   }
   return (
     <Theme>
+      
       <main className="flex min-h-screen flex-col items-center justify-between">
+
         <div className="relative w-full h-96 mb-10 ">
           <Image src={BikeWallpaper} alt="Gradient Background" className="absolute h-96 z-10 inset-0 object-cover" />
           <div
