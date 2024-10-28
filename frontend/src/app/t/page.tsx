@@ -2,25 +2,20 @@
 
 import { Theme } from "@radix-ui/themes"
 import Footer from "../components/footer/Footer"
+import Image from "next/image"
 import { getTeamsPeek } from "../components/handlers/sanity/sanityHandlers"
 import { TeamPeek } from "../components/handlers/sanity/models/sanityTypes"
 import { useState } from "react"
 import TeamsList from "../components/team/TeamsList"
 import BackButton from "../components/button/BackButton"
-
+import TeamPhoto from "../assets/team.jpg"
 const TeamsPage = () => {
     const [teams, setTeams] = useState<TeamPeek[]>()
     return (<>
         <Theme>
             <main className="flex min-h-screen flex-col items-center justify-between">
                 <div className="relative w-full h-96 mb-10 ">
-                    <div
-                        className="absolute z-10 inset-0 bg-cover bg-center"
-                        style={{
-                            //TODO: FIND A WAY TO LOAD IN BACKGROUND
-                            backgroundImage: `url("https://www.ubinkakis.com/_next/image?url=https://strapi-ubin-cms.s3.ap-southeast-1.amazonaws.com/Bicycle_Rental1_61b2d63156.png&w=3840&q=75")`,
-                        }}
-                    ></div>
+                    <Image src={TeamPhoto} alt="Gradient Background" className="absolute h-96 z-10 inset-0 object-cover" />
                     <div
                         style={{
                             width: "100%",

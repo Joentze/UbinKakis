@@ -6,8 +6,8 @@ import * as Avatar from "@radix-ui/react-avatar";
 import Footer from "./components/footer/Footer";
 import { useRef } from "react";
 import EventsList from "./components/events/EventsList";
-
-
+import BikeWallpaper from "./assets/bike.webp"
+import UbinKakisLogo from "./assets/logo.webp"
 export default function Home() {
   const journalRef = useRef<HTMLHeadingElement | null>(null);
   const scrollJournalIntoView = () => {
@@ -17,12 +17,7 @@ export default function Home() {
     <Theme>
       <main className="flex min-h-screen flex-col items-center justify-between">
         <div className="relative w-full h-96 mb-10 ">
-          <div
-            className="absolute z-10 inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: `url("https://www.ubinkakis.com/_next/image?url=https://strapi-ubin-cms.s3.ap-southeast-1.amazonaws.com/Bicycle_Rental1_61b2d63156.png&w=3840&q=75")`,
-            }}
-          ></div>
+          <Image src={BikeWallpaper} alt="Gradient Background" className="absolute h-96 z-10 inset-0 object-cover" />
           <div
             style={{
               width: "100%",
@@ -33,12 +28,8 @@ export default function Home() {
             }}
           ></div>
         </div>
-        <Avatar.Root className="-mt-48 mb-6 z-50 animate-fade-in">
-          <Avatar.AvatarImage
-            className="m-auto w-64"
-            src="https://www.ubinkakis.com/_next/image?url=https%3A%2F%2Fstrapi-ubin-cms.s3.ap-southeast-1.amazonaws.com%2FUbin_Kakis_Logo_c1157050f0.png&w=2048&q=75"
-          ></Avatar.AvatarImage>
-        </Avatar.Root>
+        <Image src={UbinKakisLogo} alt="logo" className="-mt-48 mb-6 z-50 animate-fade-in w-32 h-32">
+        </Image>
         <h1
           className="text-5xl sm:text-6xl md:text-7xl text-gray-600 select-none animate-fade-in"
         >
