@@ -27,6 +27,7 @@ const PostPage: React.FC<IPostPage> = ({ slug }) => {
   useEffect(() => {
     const getCurrPost = async () => {
       const response: Post = await getPost(slug);
+      console.log(response);
       setPost(response);
     };
     getCurrPost();
@@ -39,14 +40,16 @@ const PostPage: React.FC<IPostPage> = ({ slug }) => {
         onLoad={() => {
           (window as any).instgrm?.Embeds.process();
         }}
-      ></Script>
+      >
+      </Script>
       <div className="relative w-full h-64 mb-10 ">
         <div
           className="absolute z-10 inset-0 bg-cover bg-center"
           style={{
             backgroundImage: `url(${post?.image})`,
           }}
-        ></div>
+        >
+        </div>
         <div
           style={{
             width: "100%",
@@ -55,7 +58,8 @@ const PostPage: React.FC<IPostPage> = ({ slug }) => {
             zIndex: 10,
             position: "absolute",
           }}
-        ></div>
+        >
+        </div>
       </div>
       <div className="flex flex-col w-full sm:w-3/5 bg-transparent p-10 sm:p-0">
         <BackButton />

@@ -1,14 +1,24 @@
 import { client } from "./sanityBase";
-import { Post, PostPeek, Team, Author, Event, EventPeek, TeamPeek } from "./models/sanityTypes";
+import {
+  Author,
+  Event,
+  EventPeek,
+  Post,
+  PostPeek,
+  Team,
+  TeamPeek,
+} from "./models/sanityTypes";
 
 export const getPosts = async (): Promise<Post[]> => {
   try {
     const posts = await client.fetch('*[_type == "post"]');
+    console.log(posts);
     return posts as Post[];
   } catch (e) {
     throw new Error((e as Error).message);
   }
 };
+
 export const getPostsPeek = async (): Promise<PostPeek[]> => {
   // for getting title, image, date & category, author's name
   try {
@@ -18,11 +28,13 @@ export const getPostsPeek = async (): Promise<PostPeek[]> => {
          "slug":slug.current,
       "authorName":*[_type=="author" && _ref==author._ref] {name},publishedAt
     }`);
+    console.log(posts);
     return posts as PostPeek[];
   } catch (e) {
     throw new Error((e as Error).message);
   }
 };
+
 export const getPost = async (slug: string): Promise<Post> => {
   try {
     const post = await client.fetch(
@@ -31,8 +43,9 @@ export const getPost = async (slug: string): Promise<Post> => {
         "image":mainImage.asset->url,
         "authorName":*[_type=="author" && _ref==author._ref] {name, "slug":slug.current},
         categories[]->{title}
-      }`
+      }`,
     );
+    console.log(post);
     return post[0] as Post;
   } catch (e) {
     throw new Error((e as Error).message);
@@ -48,11 +61,13 @@ export const getTeamsPeek = async (): Promise<TeamPeek[]> => {
       "image":image.asset->url
     }
     `);
+    console.log(teams);
     return teams as TeamPeek[];
   } catch (e) {
-    throw new Error((e as Error).message)
+    throw new Error((e as Error).message);
   }
 };
+
 export const getTeam = async (slug: string): Promise<Team> => {
   try {
     const team = await client.fetch(
@@ -62,14 +77,14 @@ export const getTeam = async (slug: string): Promise<Team> => {
         bio,
         "image":image.asset->url
       }
-      `
-    )
+      `,
+    );
+    console.log(team);
     return team[0] as Team;
   } catch (e) {
-    throw new Error((e as Error).message)
+    throw new Error((e as Error).message);
   }
 };
-
 
 export const getEventsPeek = async (): Promise<EventPeek[]> => {
   try {
@@ -81,20 +96,23 @@ export const getEventsPeek = async (): Promise<EventPeek[]> => {
         eventEndsAt,
         "image":image.asset->url
       }
-      `
-    )
+      `,
+    );
+    console.log(events);
     let formattedEvents: EventPeek[] = events.map((event: Event) => ({
       ...event,
       eventStartsAt: new Date(event["eventStartsAt"]),
-      eventEndsAt: new Date(event["eventEndsAt"])
-    })).sort((a: Event, b: Event) => a.eventStartsAt.getTime() - b.eventStartsAt.getTime());
+      eventEndsAt: new Date(event["eventEndsAt"]),
+    })).sort((a: Event, b: Event) =>
+      a.eventStartsAt.getTime() - b.eventStartsAt.getTime()
+    );
 
     return formattedEvents as EventPeek[];
-
   } catch (e) {
-    throw new Error("There was an error with getting events")
+    throw new Error("There was an error with getting events");
   }
 };
+
 export const getEvent = async (slug: string): Promise<Event> => {
   try {
     const event = await client.fetch(
@@ -107,8 +125,9 @@ export const getEvent = async (slug: string): Promise<Event> => {
         bio,
         "image":image.asset->url
       }
-      `
+      `,
     );
+    console.log(event);
     return {
       ...event[0],
       eventStartsAt: new Date(event[0]["eventStartsAt"]),
@@ -118,6 +137,7 @@ export const getEvent = async (slug: string): Promise<Event> => {
     throw new Error((e as Error).message);
   }
 };
+
 export const getAuthor = async (slug: string): Promise<Author> => {
   try {
     const author = await client.fetch(
@@ -131,10 +151,11 @@ export const getAuthor = async (slug: string): Promise<Author> => {
         bio,
         "image":image.asset->url
       }
-      `
-    )
+      `,
+    );
+    console.log(author);
     return author[0] as Author;
   } catch (e) {
-    throw new Error((e as Error).message)
+    throw new Error((e as Error).message);
   }
 };
