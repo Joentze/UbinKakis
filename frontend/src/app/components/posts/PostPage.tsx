@@ -31,17 +31,9 @@ const PostPage: React.FC<IPostPage> = ({ slug }) => {
       setPost(response);
     };
     getCurrPost();
-  }, []);
+  }, [slug]);
   return (
     <>
-      <Script
-        strategy="beforeInteractive"
-        src="//www.instagram.com/embed.js"
-        onLoad={() => {
-          (window as any).instgrm?.Embeds.process();
-        }}
-      >
-      </Script>
       <div className="relative w-full h-64 mb-10 ">
         <div
           className="absolute z-10 inset-0 bg-cover bg-center"
