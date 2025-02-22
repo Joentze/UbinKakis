@@ -86,20 +86,24 @@ const PostPage: React.FC<IPostPage> = ({ slug }) => {
           {convertDateTimeString(post?.publishedAt as string)}
         </p>
         <p className="text-sm text-gray-800 ">
-          {post?.authorName.map((item: AuthorNameSlug, idx) => {
-            return (
-              <>
-                <span className="font-bold">Written by:</span>{" "}
-                <a
-                  className="text-gray-600 hover:underline active:text-gray-500"
-                  href={`/a/${item.slug}`}
-                >
-                  {item.name} {idx !== post?.authorName.length - 1 ? "," : ""}
-                </a>
-              </>
-            );
-          })}
+          <>
+            <span className="font-bold">Written by:</span>{" "}
+            <a className="text-gray-600 hover:underline active:text-gray-500" // href={`/a/${item.slug}`}
+            >
+              {post?.authorRealName}
+            </a>
+          </>
         </p>
+
+        {
+          /* <>
+          <span className="font-bold">Written by:</span>{" "}
+          <a className="text-gray-600 hover:underline active:text-gray-500"// href={`/a/${item.slug}`}
+          >
+            {post?.authorRealName}
+          </a>
+        </> */
+        }
         <Skeleton loading={post === undefined}>
           <div className="m-auto list-disc min-w-full min-h-96">
             <PortableTextRenderer value={post?.body as any} />

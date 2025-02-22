@@ -19,18 +19,21 @@ const PostsList = () => {
     };
     getAllPost();
   }, []);
-  return (<div className="max-w-3/5 flex flex-wrap gap-4">{postPeeks.map(item =>
-    <Skeleton loading={item === undefined}>
-      <JournalCard
-        slug={item.slug}
-        authorName={item.authorName[0]["name"]}
-        title={item.title}
-        date={item.publishedAt}
-        image={item.image}
-      />
-    </Skeleton>
-  )}
-  </div>);
+  return (
+    <div className="max-w-3/5 flex flex-wrap gap-4">
+      {postPeeks.map((item) => (
+        <Skeleton loading={item === undefined}>
+          <JournalCard
+            slug={item.slug}
+            authorName={item.authorRealName}
+            title={item.title}
+            date={item.publishedAt}
+            image={item.image}
+          />
+        </Skeleton>
+      ))}
+    </div>
+  );
 };
 
 export default PostsList;

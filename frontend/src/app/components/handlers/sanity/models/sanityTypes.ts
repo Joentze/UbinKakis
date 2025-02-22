@@ -57,6 +57,7 @@ export interface Image {
 
 export interface Post {
   image: Image;
+  authorRealName: string;
   authorName: AuthorNameSlug[];
   _updatedAt: string;
   slug: Slug;
@@ -77,6 +78,7 @@ export interface AuthorName {
 }
 
 export interface PostPeek {
+  authorRealName: string;
   publishedAt: string;
   title: string;
   image: string;

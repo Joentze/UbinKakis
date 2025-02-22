@@ -26,7 +26,8 @@ export const getPostsPeek = async (): Promise<PostPeek[]> => {
       title,
       "image":mainImage.asset->url,
          "slug":slug.current,
-      "authorName":*[_type=="author" && _ref==author._ref] {name},publishedAt
+      "authorName":*[_type=="author" && _ref==author._ref] {name},publishedAt,
+      "authorRealName":author->name
     }`);
     console.log(posts);
     return posts as PostPeek[];
@@ -42,6 +43,7 @@ export const getPost = async (slug: string): Promise<Post> => {
         ...,
         "image":mainImage.asset->url,
         "authorName":*[_type=="author" && _ref==author._ref] {name, "slug":slug.current},
+        "authorRealName":author->name,
         categories[]->{title}
       }`,
     );
