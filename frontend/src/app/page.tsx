@@ -104,7 +104,7 @@ export default function Home() {
         </h1>
         <div className="w-full flex flex-col m-auto">
           {categories && (
-            <Tabs defaultValue={categories[0]} className="w-full">
+            <Tabs defaultValue={"2023"} className="w-full">
               <div className="flex justify-center">
                 <TabsList className="mb-10">
                   {categories.map((category) => {
