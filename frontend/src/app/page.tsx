@@ -103,27 +103,31 @@ export default function Home() {
           Stories, Reflections & More
         </h1>
         <div className="w-full flex flex-col m-auto">
-          <Tabs defaultValue={categories[0]} className="w-full">
-            <div className="flex justify-center">
-              <TabsList className="mb-10">
-                {categories.map((category) => {
-                  return <TabsTrigger value={category}>{category}</TabsTrigger>;
-                })}
-              </TabsList>
-            </div>
-            {categories.map((category) => {
-              const postPeeksInCategory = postPeeks.filter((postPeek) => {
-                if (postPeek.categories) {
-                  return postPeek.categories.includes(category);
-                }
-              });
-              return (
-                <TabsContent value={category}>
-                  <PostsList postPeeks={postPeeksInCategory} />
-                </TabsContent>
-              );
-            })}
-          </Tabs>
+          {categories && (
+            <Tabs defaultValue={categories[0]} className="w-full">
+              <div className="flex justify-center">
+                <TabsList className="mb-10">
+                  {categories.map((category) => {
+                    return (
+                      <TabsTrigger value={category}>{category}</TabsTrigger>
+                    );
+                  })}
+                </TabsList>
+              </div>
+              {categories.map((category) => {
+                const postPeeksInCategory = postPeeks.filter((postPeek) => {
+                  if (postPeek.categories) {
+                    return postPeek.categories.includes(category);
+                  }
+                });
+                return (
+                  <TabsContent value={category}>
+                    <PostsList postPeeks={postPeeksInCategory} />
+                  </TabsContent>
+                );
+              })}
+            </Tabs>
+          )}
         </div>
         {/* <PostsList postPeeks={postPeeks} /> */}
         <hr className="w-full my-12"></hr>
