@@ -65,7 +65,7 @@ export interface Post {
   publishedAt: string;
   _type: "post";
   _id: string;
-  categories: CategoryTitle[];
+  categories: string[];
   body: (Block | YouTubeBlock)[];
   title: string;
   author: Reference;
@@ -84,6 +84,7 @@ export interface PostPeek {
   image: string;
   slug: string;
   authorName: AuthorName[];
+  categories: string[];
 }
 
 export interface Team {

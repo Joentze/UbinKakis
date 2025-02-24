@@ -68,7 +68,7 @@ const PostPage: React.FC<IPostPage> = ({ slug }) => {
                   variant="surface"
                   className="my-auto"
                 >
-                  {item.title}
+                  {item}
                 </Badge>
               );
             })}

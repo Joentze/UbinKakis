@@ -27,7 +27,8 @@ export const getPostsPeek = async (): Promise<PostPeek[]> => {
       "image":mainImage.asset->url,
          "slug":slug.current,
       "authorName":*[_type=="author" && _ref==author._ref] {name},publishedAt,
-      "authorRealName":author->name
+      "authorRealName":author->name,
+      "categories": categories[]->title
     }`);
     console.log(posts);
     return posts as PostPeek[];
@@ -44,11 +45,21 @@ export const getPost = async (slug: string): Promise<Post> => {
         "image":mainImage.asset->url,
         "authorName":*[_type=="author" && _ref==author._ref] {name, "slug":slug.current},
         "authorRealName":author->name,
-        categories[]->{title}
+        "categories": categories[]->title
       }`,
     );
     console.log(post);
     return post[0] as Post;
+  } catch (e) {
+    throw new Error((e as Error).message);
+  }
+};
+
+export const getAllCategories = async (): Promise<string[]> => {
+  try {
+    const categories = await client.fetch(`*[_type == "category"]{title}`);
+    console.log(categories);
+    return categories.map((category: { title: string }) => category.title);
   } catch (e) {
     throw new Error((e as Error).message);
   }
